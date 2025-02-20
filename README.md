@@ -11,7 +11,8 @@
     - 数据去重复：343480 -> 64241
 4. 得到的数据记得去重复，最后数量是64241个多轮对话
 5. llama_factory/data/dataset_info.json添加数据集信息
-   ```"chatharuhi54k-train":{
+   ```python
+      "chatharuhi54k-train":{
     "file_name": "$具体地址",
     "formatting": "sharegpt",
     "columns": {
@@ -24,10 +25,11 @@
       "assistant_tag": "assistant",
       "system_tag": "system"
     }
-}
-```
+   }
+
 6. llama_factory/src/llamafactory/data/template.py添加模板内容
-  ```_register_template(
+```python
+   _register_template(
     name="qwen-roleplay",
     format_user=StringFormatter(slots=["<|im_start|>user\n{{content}}<|im_end|>\n<|im_start|>assistant\n"]),
     format_assistant=StringFormatter(slots=["{{content}}<|im_end|>\n"]),
@@ -39,8 +41,7 @@
     format_tools=ToolFormatter(tool_format="qwen"),
     default_system="",
     stop_words=["<|im_end|>"],
-)
-```
+   )   
 7. 开始训练
 FORCE_TORCHRUN=1 llamafactory-cli train /root/autodl-tmp/train_config/train.yaml
 ## 注意事项
