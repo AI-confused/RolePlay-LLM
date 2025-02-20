@@ -41,7 +41,8 @@
     format_tools=ToolFormatter(tool_format="qwen"),
     default_system="",
     stop_words=["<|im_end|>"],
-   )   
+   )
+
 7. 开始训练
 FORCE_TORCHRUN=1 llamafactory-cli train /root/autodl-tmp/train_config/train.yaml
 ## 注意事项
