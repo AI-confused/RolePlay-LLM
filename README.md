@@ -24,7 +24,8 @@
       "assistant_tag": "assistant",
       "system_tag": "system"
     }
-}```
+}
+```
 6. llama_factory/src/llamafactory/data/template.py添加模板内容
   ```_register_template(
     name="qwen-roleplay",
@@ -38,7 +39,8 @@
     format_tools=ToolFormatter(tool_format="qwen"),
     default_system="",
     stop_words=["<|im_end|>"],
-)```
+)
+```
 7. 开始训练
 FORCE_TORCHRUN=1 llamafactory-cli train /root/autodl-tmp/train_config/train.yaml
 ## 注意事项
