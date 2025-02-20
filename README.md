@@ -13,35 +13,35 @@
 5. llama_factory/data/dataset_info.json添加数据集信息
    ```python
       "chatharuhi54k-train":{
-    "file_name": "$具体地址",
-    "formatting": "sharegpt",
-    "columns": {
-      "messages": "messages"
-    },
-    "tags": {
-      "role_tag": "role",
-      "content_tag": "content",
-      "user_tag": "user",
-      "assistant_tag": "assistant",
-      "system_tag": "system"
-    }
-   }
+       "file_name": "$具体地址",
+       "formatting": "sharegpt",
+       "columns": {
+         "messages": "messages"
+       },
+       "tags": {
+         "role_tag": "role",
+         "content_tag": "content",
+         "user_tag": "user",
+         "assistant_tag": "assistant",
+         "system_tag": "system"
+       }
+      }
 
 6. llama_factory/src/llamafactory/data/template.py添加模板内容
 ```python
-   _register_template(
-    name="qwen-roleplay",
-    format_user=StringFormatter(slots=["<|im_start|>user\n{{content}}<|im_end|>\n<|im_start|>assistant\n"]),
-    format_assistant=StringFormatter(slots=["{{content}}<|im_end|>\n"]),
-    format_system=StringFormatter(slots=["<|im_start|>system\n{{content}}<|im_end|>\n"]),
-    format_function=FunctionFormatter(slots=["{{content}}<|im_end|>\n"], tool_format="qwen"),
-    format_observation=StringFormatter(
-        slots=["<|im_start|>user\n<tool_response>\n{{content}}\n</tool_response><|im_end|>\n<|im_start|>assistant\n"]
-    ),
-    format_tools=ToolFormatter(tool_format="qwen"),
-    default_system="",
-    stop_words=["<|im_end|>"],
-   )
+      _register_template(
+       name="qwen-roleplay",
+       format_user=StringFormatter(slots=["<|im_start|>user\n{{content}}<|im_end|>\n<|im_start|>assistant\n"]),
+       format_assistant=StringFormatter(slots=["{{content}}<|im_end|>\n"]),
+       format_system=StringFormatter(slots=["<|im_start|>system\n{{content}}<|im_end|>\n"]),
+       format_function=FunctionFormatter(slots=["{{content}}<|im_end|>\n"], tool_format="qwen"),
+       format_observation=StringFormatter(
+           slots=["<|im_start|>user\n<tool_response>\n{{content}}\n</tool_response><|im_end|>\n<|im_start|>assistant\n"]
+       ),
+       format_tools=ToolFormatter(tool_format="qwen"),
+       default_system="",
+       stop_words=["<|im_end|>"],
+      )
 
 7. 开始训练
 FORCE_TORCHRUN=1 llamafactory-cli train /root/autodl-tmp/train_config/train.yaml
