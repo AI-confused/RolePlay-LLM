@@ -42,5 +42,5 @@
 7. 开始训练
 FORCE_TORCHRUN=1 llamafactory-cli train /root/autodl-tmp/train_config/train.yaml
 ## 注意事项
-0.5b的基座可：单卡4090（D）24G，per-device-batch=4
-1.5b的基座可：双卡4090(D)24G, per-device-batch=1
+- 0.5b的基座可：单卡4090（D）24G，per-device-batch=4
+- 1.5b的基座可：双卡4090(D)24G, per-device-batch=1
